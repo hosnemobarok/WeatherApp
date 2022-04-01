@@ -103,8 +103,10 @@ class ViewController: UIViewController {
                     
                     DispatchQueue.main.async { [self] in
                         locationName.text = weather?.location?.name
-                        guard let temper = weather?.location?.lon else { return}
-                        temperature.text = "\(Int(temper))°"
+            
+                        guard let rainTemperature = weather?.forecast?.forecastday![0].day?.dailyChanceOfRain else { return}
+                        temperature.text = "\(Int(rainTemperature))°"
+                        
                         countryName.text = weather?.location?.country
                         guard let highTemp = weather?.current?.tempC else { return }
                         highTemperature.text = "H: \(Int(highTemp))°"
